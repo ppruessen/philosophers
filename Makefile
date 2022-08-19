@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mschiman <mschiman@student.42wolfsburg.de> +#+  +:+       +#+         #
+#    By: pprussen <pprussen@42wolfsburg.de>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/07 20:03:54 by mschiman          #+#    #+#              #
-#    Updated: 2022/08/14 13:53:15 by mschiman         ###   ########.fr        #
+#    Updated: 2022/08/19 12:00:47 by pprussen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ clean:
 	@rm -f ${OBJS}
 
 fclean: clean
-	-rm $(NAME)
+	@-rm $(NAME)
 
 re: fclean all
 
