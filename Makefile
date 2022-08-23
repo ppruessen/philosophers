@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pprussen <pprussen@42wolfsburg.de>         +#+  +:+       +#+         #
+#    By: pprussen <pprussen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/07 20:03:54 by mschiman          #+#    #+#              #
-#    Updated: 2022/08/19 12:00:47 by pprussen         ###   ########.fr        #
+#    Updated: 2022/08/23 13:15:09 by pprussen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ SRC =	./main.c \
 		./helpers.c \
 		./check_status.c \
 		./routine.c \
-		./print.c
+		./print.c \
+		./ft_putnbr_fd.c
 		
 NAME = philo
 CC = gcc

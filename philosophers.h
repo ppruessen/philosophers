@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschiman <mschiman@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pprussen <pprussen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 20:12:17 by mschiman          #+#    #+#             */
-/*   Updated: 2022/08/14 12:54:32 by mschiman         ###   ########.fr       */
+/*   Updated: 2022/08/23 13:15:31 by pprussen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,8 @@ void	*routine(void *args);
 int		print_error(char *error_msg);
 void	print_status(t_var *var, t_philo *philo, char *msg);
 void	print_meal_count(t_var *var, t_philo *philo);
+
+/* ft_putnbr_fd.c */
+void	ft_putnbr_fd(int n, int fd);
 
 #endif
