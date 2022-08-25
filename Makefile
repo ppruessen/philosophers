@@ -5,29 +5,21 @@
 #                                                     +:+ +:+         +:+      #
 #    By: pprussen <pprussen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/07 20:03:54 by mschiman          #+#    #+#              #
-#    Updated: 2022/08/23 13:15:09 by pprussen         ###   ########.fr        #
+#    Created: 2022/06/30 16:46:35 by mschiman          #+#    #+#              #
+#    Updated: 2022/08/25 15:56:22 by pprussen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	./main.c \
-		./init.c \
-		./helpers.c \
-		./check_status.c \
-		./routine.c \
-		./print.c \
-		./ft_putnbr_fd.c
+SRC = 	src/main.c \
+		src/init.c \
+		src/helpers.c \
+		src/error_clean.c \
+		src/routine.c \
+		src/prints.c
 		
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-#Could make it faster add at the end of line 22:: -g -O3
-#Data Race check #1
-#						 add at the end of line 22: -fsanitize=thread
-#Data Race check #2 (not an M1 Mac):
-#						 valgrind --tool=helgrind ./philo 5 310 200 200
-#Leaks check on Mac: Leaks --atExit -- ./philo ....
-#Leaks check on Linux: valgrind ./philo ...
+CFLAGS = -Wall -Wextra -Werror #-g -O3 -fsanitize=thread
 OBJS = ${SRC:.c=.o}
 
 $(NAME) : $(OBJS)
@@ -39,7 +31,8 @@ clean:
 	@rm -f ${OBJS}
 
 fclean: clean
-	@-rm $(NAME)
+	-rm $(NAME)
+	-rm ./src/*.o
 
 re: fclean all
 

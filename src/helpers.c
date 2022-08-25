@@ -6,11 +6,11 @@
 /*   By: mschiman <mschiman@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 09:55:39 by pprussen          #+#    #+#             */
-/*   Updated: 2022/08/07 20:05:36 by mschiman         ###   ########.fr       */
+/*   Updated: 2022/06/30 16:54:24 by mschiman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../incl/philosophers.h"
 
 /* Function returns the current time in milliseconds since 01.01.1970 */
 long	pp_current_time(void)
@@ -49,7 +49,7 @@ static int	ft_is_whitespace(char c)
 *	The isdigit() function return zero if the character tests 
 *	false and return non-zero if the character tests true.
 */
-static int	ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
