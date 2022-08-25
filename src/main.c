@@ -6,7 +6,7 @@
 /*   By: pprussen <pprussen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 08:29:37 by pprussen          #+#    #+#             */
-/*   Updated: 2022/08/18 08:51:13 by pprussen         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:16:16 by pprussen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,47 @@ int	input_handler(int argc, char **argv, t_var *var)
 	return (0);
 }
 
+/* initialise mutexes (locks) for forks, output and death to prevent parallel */
+/* usage of the same variable by multiple threads at the same time */
 int	init_mutexes(t_var *var)
 {
-	if (pthread_mutex_init(&var->lock_forks, NULL) != 0
-		|| pthread_mutex_init(&var->lock_output, NULL) != 0
+	int	i;
+
+	i = 0;
+	var->lock_forks = malloc(sizeof(pthread_mutex_t) * var->nb_philos);
+	if (var->lock_forks == NULL)
+		return (pp_init_error("Could not malloc pthread_mutexes\n"));
+	while (i < var->nb_philos)
+	{
+		if (pthread_mutex_init(&var->lock_forks[i], NULL) != 0)
+			return (pp_init_error("Could not init pthread_mutexes\n"));
+		i++;
+	}
+	if (pthread_mutex_init(&var->lock_output, NULL) != 0
 		|| pthread_mutex_init(&var->lock_died, NULL) != 0)
 		return (pp_init_error("Could not init pthread_mutexes\n"));
+	return (0);
+}
+
+/* Detroys the mutexes and frees allocated memory. */
+static int	destroy_and_free(t_var *var)
+{
+	int	i;
+
+	i = 0;
+	while (i < var->nb_philos)
+	{
+		if (pthread_mutex_destroy(&var->lock_forks[i]) != 0)
+			return (pp_init_error("Could not destroy pthread_mutexes\n"));
+		i++;
+	}
+	if (pthread_mutex_destroy(&var->lock_output) != 0
+		|| pthread_mutex_destroy(&var->lock_died) != 0)
+		return (pp_init_error("Could not destroy pthread_mutexes\n"));
+	free(var->lock_forks);
+	free(var->philos);
+	free(var->philo);
+	free(var->forks);
 	return (0);
 }
 
@@ -96,5 +131,6 @@ int	main(int argc, char **argv)
 			return (pp_init_error("Could not create pthread_joins\n"));
 		i++;
 	}
-	return (make_clean(&var));
+	destroy_and_free(&var);
+	return (0);
 }

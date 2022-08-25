@@ -6,7 +6,7 @@
 #    By: pprussen <pprussen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/30 16:46:35 by mschiman          #+#    #+#              #
-#    Updated: 2022/08/25 15:56:22 by pprussen         ###   ########.fr        #
+#    Updated: 2022/08/25 18:08:46 by pprussen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,7 @@ clean:
 	@rm -f ${OBJS}
 
 fclean: clean
-	-rm $(NAME)
-	-rm ./src/*.o
+	@-rm $(NAME)
 
 re: fclean all
 

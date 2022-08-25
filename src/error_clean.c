@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mschiman <mschiman@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*   By: pprussen <pprussen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 10:05:06 by pprussen          #+#    #+#             */
-/*   Updated: 2022/06/30 16:56:16 by mschiman         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:16:56 by pprussen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	pp_init_error(char *error_msg)
 	printf("Error: %s\n", error_msg);
 	return (-1);
 }
-
+/*
 int	make_clean(t_var *var)
 {
 	if (pthread_mutex_destroy(&var->lock_forks) != 0
@@ -29,3 +29,4 @@ int	make_clean(t_var *var)
 	free(var->forks);
 	return (0);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: pprussen <pprussen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:46:44 by mschiman          #+#    #+#             */
-/*   Updated: 2022/08/18 09:08:04 by pprussen         ###   ########.fr       */
+/*   Updated: 2022/08/25 16:08:57 by pprussen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_var
 	int					*forks;
 	long				starttime;
 	int					died;
-	pthread_mutex_t		lock_forks;
+	pthread_mutex_t		*lock_forks;
 	pthread_mutex_t		lock_output;
 	pthread_mutex_t		lock_died;
 }	t_var;
