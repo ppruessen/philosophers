@@ -6,7 +6,7 @@
 /*   By: pprussen <pprussen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/30 16:46:51 by mschiman          #+#    #+#             */
-/*   Updated: 2022/08/25 16:54:48 by pprussen         ###   ########.fr       */
+/*   Updated: 2022/08/27 13:03:42 by pprussen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	get_forks_and_eat(t_var *var, t_philo *philo)
 	philo->last_meal = pp_current_time();
 	philo->time_to_die = philo->last_meal + var->time_to_die;
 //	pp_usleep(var,var->time_to_eat * 1000);
-	pp_usleep(var,var->time_to_eat * 1000, philo);
+	pp_usleep(var, var->time_to_eat * 1000, philo);
 	philo->nb_eaten++;
 	pthread_mutex_unlock(&var->lock_forks[philo->nb_right_fork]);
 	pthread_mutex_unlock(&var->lock_forks[philo->nb_left_fork]);
@@ -96,12 +96,20 @@ int	get_forks_and_eat(t_var *var, t_philo *philo)
 
 void	pp_sleep(t_var *var, t_philo *philo)
 {
+	long long	time_delta;
+
 //	print_status(var, philo);
 	put_messages(var, philo, "is sleeping");
 	philo->sleep_start = pp_current_time();
 //	pp_usleep(var, var->time_to_sleep * 1000);
-	pp_usleep(var,var->time_to_eat * 1000, philo);
+	pp_usleep(var, var->time_to_sleep * 1000, philo);
+	check_status(var, philo);
 	put_messages(var, philo, "is thinking");
+	if (var->time_to_eat >= var->time_to_sleep)
+	{
+		time_delta = var->time_to_eat - var->time_to_sleep;
+		pp_usleep(var, time_delta * 1000, philo);
+	}	
 }
 
 static void	*single_philo(t_var *var, t_philo *philo)
